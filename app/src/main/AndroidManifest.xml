@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.werb.mediautilsdemo">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -22,13 +23,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.VideoRecorderActivity"
-            android:theme="@style/BlackTheme">
-        </activity>
+        <activity
+            android:name=".activity.VideoRecorderActivity"
+            android:theme="@style/BlackTheme"/>
 
-        <activity android:name=".activity.AudioRecorderActivity"
-            android:theme="@style/BlackTheme">
-        </activity>
+        <activity
+            android:name=".activity.AudioRecorderActivity"
+            android:theme="@style/BlackTheme"/>
+
+        <activity
+            android:name=".activity.AhhRecorderActivity"
+            android:theme="@style/BlackTheme" />
     </application>
 
 </manifest>

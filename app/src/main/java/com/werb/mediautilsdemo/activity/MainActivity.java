@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE
     };
-    private Button audio,video;
+    private Button audio, video, ahhBtn;
     private PermissionChecker permissionChecker;
     private int type;
 
@@ -31,9 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         audio = (Button) findViewById(R.id.btn_audio);
         video = (Button) findViewById(R.id.btn_video);
+        ahhBtn = (Button) findViewById(R.id.btn_ahh);
 
         audio.setOnClickListener(audioClick);
         video.setOnClickListener(videoClick);
+        ahhBtn.setOnClickListener(ahhClick);
     }
 
     View.OnClickListener audioClick = new View.OnClickListener() {
@@ -60,15 +62,29 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void startAudio(){
+    View.OnClickListener ahhClick = v -> {
+        if (permissionChecker.isLackPermissions(PERMISSIONS)) {
+            permissionChecker.requestPermissions();
+        } else {
+            startAhh();
+        }
+    };
+
+    private void startAudio() {
         Intent intent = new Intent();
-        intent.setClass(MainActivity.this,AudioRecorderActivity.class);
+        intent.setClass(MainActivity.this, AudioRecorderActivity.class);
         startActivity(intent);
     }
 
-    private void startVideo(){
+    private void startVideo() {
         Intent intent = new Intent();
-        intent.setClass(MainActivity.this,VideoRecorderActivity.class);
+        intent.setClass(MainActivity.this, VideoRecorderActivity.class);
+        startActivity(intent);
+    }
+
+    private void startAhh() {
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, AhhRecorderActivity.class);
         startActivity(intent);
     }
 
@@ -77,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case PermissionChecker.PERMISSION_REQUEST_CODE:
                 if (permissionChecker.hasAllPermissionsGranted(grantResults)) {
-                    if(type == 1){
+                    if (type == 1) {
                         startAudio();
-                    }else if(type == 2){
+                    } else if (type == 2) {
                         startVideo();
                     }
                 } else {
